@@ -5,7 +5,7 @@ const { authMiddleware } = require('../middleware/authMiddleware');
 const Enquiry = require('../models/Enquiry');
 
 // POST: Submit a new enquiry (Public)
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { name, email, mobile, message } = req.body;
         
