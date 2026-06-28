@@ -33,8 +33,8 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from the frontend directory
-app.use(express.static(path.join(__dirname, '../frontend')));
-app.use(express.static(path.join(__dirname, '../frontend/views'))); // So URLs like /admin-login.html work
+app.use(express.static(path.join(__dirname, '../frontend'), { extensions: ['html'] }));
+app.use(express.static(path.join(__dirname, '../frontend/views'), { extensions: ['html'] })); // So URLs like /admin-login work
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Database Connection Setup
