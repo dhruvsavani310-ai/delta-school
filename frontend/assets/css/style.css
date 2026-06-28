@@ -1314,3 +1314,30 @@ body.has-announcement .navbar.fixed-top {
         animation: none;
     }
 }
+
+/* Global Preloader */
+#global-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loader-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(0, 0, 0, 0.05);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

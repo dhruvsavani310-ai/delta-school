@@ -170,3 +170,13 @@ class GlobalHeader extends HTMLElement {
 }
 
 customElements.define('global-header', GlobalHeader);
+
+// Global Preloader Logic
+window.addEventListener('load', () => {
+    const loader = document.getElementById('global-preloader');
+    if (loader) {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        setTimeout(() => loader.remove(), 500);
+    }
+});
