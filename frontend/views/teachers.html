@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Teachers | Delta International School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+    
+    
+    
+    
+
+    
+    <global-header></global-header>
+
+    <header class="page-header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Our Teachers</h1>
+            <p class="lead text-white-50 mx-auto" style="max-width: 700px;">Meet our dedicated and experienced faculty members who inspire and guide our students every day.</p>
+        </div>
+    </header>
+
+    <section class="section-padding bg-light">
+        <div class="container">
+            <!-- Search and Filter -->
+            <div class="row mb-5 justify-content-center">
+                <div class="col-md-5 mb-3 mb-md-0">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 text-muted"><i class="fa-solid fa-search"></i></span>
+                        <input type="text" id="searchInput" class="form-control border-start-0 ps-0" placeholder="Search teacher by name...">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select id="subjectFilter" class="form-select">
+                        <option value="All">All Subjects</option>
+                        <!-- Options injected dynamically -->
+                    </select>
+                </div>
+            </div>
+
+            <!-- Teachers Grid -->
+            <div class="row g-4" id="teachersGrid">
+                <div class="col-12 text-center text-muted py-5" id="loadingState">
+                    <div class="spinner-border text-primary mb-3" role="status"></div>
+                    <p>Loading teachers...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 Delta International School. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let allTeachers = [];
+
+        async function fetchTeachers() {
+            try {
+                const res = await fetch('/api/teachers');
+                if (res.ok) {
+                    allTeachers = await res.json();
+                    populateSubjects();
+                    renderTeachers(allTeachers);
+                } else {
+                    document.getElementById('loadingState').innerHTML = '<p class="text-danger">Failed to load teachers.</p>';
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loadingState').innerHTML = '<p class="text-danger">Connection error.</p>';
+            }
+        }
+
+        function populateSubjects() {
+            const subjects = [...new Set(allTeachers.map(t => t.subject))].sort();
+            const filter = document.getElementById('subjectFilter');
+            subjects.forEach(sub => {
+                const opt = document.createElement('option');
+                opt.value = sub;
+                opt.textContent = sub;
+                filter.appendChild(opt);
+            });
+        }
+
+        function renderTeachers(teachers) {
+            const grid = document.getElementById('teachersGrid');
+            if (teachers.length === 0) {
+                grid.innerHTML = '<div class="col-12 text-center text-muted py-5">No teachers found matching your criteria.</div>';
+                return;
+            }
+
+            let html = '';
+            teachers.forEach(t => {
+                const img = t.photo ? t.photo : 'https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
+                html += `
+                <div class="col-md-6 col-lg-4">
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrapper">
+                            <img src="${img}" alt="${t.name}" class="teacher-img">
+                            <span class="teacher-subject">${t.subject}</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="fw-bold mb-1" style="color: var(--primary-color);">${t.name}</h4>
+                            <p class="text-muted small mb-3"><i class="fa-solid fa-graduation-cap me-2"></i>${t.qualification || 'N/A'}</p>
+                            <p class="mb-0" style="font-size: 0.9rem;">
+                                <i class="fa-solid fa-briefcase me-2" style="color: var(--secondary-color);"></i>
+                                ${t.experience || 'Not specified'} experience
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            grid.innerHTML = html;
+        }
+
+        document.getElementById('searchInput').addEventListener('input', filterTeachers);
+        document.getElementById('subjectFilter').addEventListener('change', filterTeachers);
+
+        function filterTeachers() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const subject = document.getElementById('subjectFilter').value;
+
+            const filtered = allTeachers.filter(t => {
+                const matchName = t.name.toLowerCase().includes(query);
+                const matchSubject = subject === 'All' || t.subject === subject;
+                return matchName && matchSubject;
+            });
+
+            renderTeachers(filtered);
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchTeachers);
+    </script>
+    <script src="../assets/js/global-header.js" defer></script>
+</body>
+</html>

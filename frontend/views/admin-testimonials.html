@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Delta International School</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css" rel="stylesheet">
+    <link href="../assets/css/admin-datatables.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+    <!-- Anti-caching for protected routes -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="../assets/css/admin-layout.css">
+</head>
+<body>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+        <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+        <h5 class="text-muted">Authenticating...</h5>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <button id="sidebarCloseBtn" class="sidebar-close-btn d-md-none"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#" class="brand d-flex align-items-center" style="gap: 10px; padding: 15px 20px;">
+            <img src="../assets/images/logo.png" alt="Logo" style="height: 35px; width: auto; flex-shrink: 0;">
+            <span style="font-size: 15px; line-height: 1.2; white-space: normal; text-align: left;">Delta International School</span>
+        </a>
+        
+                <a href="admin-dashboard.html" class="nav-item"><i class="fa-solid fa-table-columns"></i> <span>Dashboard</span></a>
+        <a href="admin-announcements.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> <span>Announcements</span></a>
+        <a href="admin-admissions.html" class="nav-item"><i class="fa-solid fa-user-graduate"></i> <span>Admissions</span></a>
+        <a href="admin-teachers.html" class="nav-item"><i class="fa-solid fa-chalkboard-user"></i> <span>Teachers</span></a>
+        <a href="admin-top-students.html" class="nav-item"><i class="fa-solid fa-award"></i> <span>Top Students</span></a>
+        <a href="admin-events.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i> <span>Events</span></a>
+        <a href="admin-gallery.html" class="nav-item"><i class="fa-solid fa-images"></i> <span>Gallery</span></a>
+        <a href="admin-enquiries.html" class="nav-item"><i class="fa-solid fa-envelope"></i> <span>Enquiries</span></a>
+        <a href="admin-content.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> <span>Site Content</span></a>
+        <a href="admin-settings.html" class="nav-item"><i class="fa-solid fa-gear"></i> <span>App Settings</span></a>
+        <a href="admin-users.html" class="nav-item"><i class="fa-solid fa-users-gear"></i> <span>Admin Users</span></a>
+</div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <button id="mobileMenuToggle" class="mobile-toggle-btn d-md-none"><i class="fa-solid fa-bars"></i></button>
+            <h4 class="mb-0 fw-bold" style="color: var(--primary-color);">Manage Testimonials</h4>
+            <div class="d-flex align-items-center">
+                <div class="me-3 text-end">
+                    <span class="d-block fw-bold" id="headerUserRoleDisplay" style="font-size: 14px;">Loading...</span>
+                    <span class="d-block text-muted" style="font-size: 12px; cursor: pointer;" onclick="showLogoutModal()">Log out</span>
+                </div>
+                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </div>
+        </div>
+
+        
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-header bg-white p-4 border-0"><h5 class="fw-bold mb-0">Add Testimonial</h5></div>
+            <div class="card-body p-4 pt-0">
+                <form id="testiForm">
+                    <div class="mb-3"><label>Name</label><input type="text" id="tName" class="form-control" required></div>
+                    <div class="mb-3"><label>Role (e.g., Parent of Grade 5)</label><input type="text" id="tRole" class="form-control" required></div>
+                    <div class="mb-3"><label>Quote</label><textarea id="tQuote" class="form-control" rows="4" required></textarea></div>
+                    <button type="submit" class="btn btn-primary w-100">Add Testimonial</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-header bg-white p-4 border-0"><h5 class="fw-bold mb-0">Existing Testimonials</h5></div>
+            <div class="card-body p-4 pt-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle" id="testiTableEl" style="width:100%">
+                        <thead><tr><th>Name</th><th>Role</th><th>Quote</th><th>Action</th></tr></thead>
+                        <tbody id="testiTable">
+                            <tr class="skeleton-row"><td colspan="4"><div class="skeleton-box"></div></td></tr>
+                            <tr class="skeleton-row"><td colspan="4"><div class="skeleton-box"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- jQuery & DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <script src="../assets/js/admin-datatables.js"></script>
+    <script src="../assets/js/ui-modals.js"></script>
+    <script>
+function checkAuth() {
+            setTimeout(() => {
+                const overlay = document.getElementById('loadingOverlay');
+                if (overlay) overlay.style.display = 'none';
+            }, 300);
+        }
+
+        async function showLogoutModal() {
+            const confirmed = await UIModals.confirm('Logout', 'Are you sure you want to logout?', 'Logout', 'danger');
+            if(confirmed) {
+                confirmLogout();
+            }
+        }
+
+        async function confirmLogout() {
+            try {
+                await fetch('/api/auth/logout', { method: 'POST' });
+            } catch(e) { console.error(e); }
+            
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace('admin-login.html');
+        }
+
+checkAuth();
+
+// Inject Page Specific Logic
+
+async function loadTesti() {
+    const res = await fetch('/api/testimonials');
+    if (res.status === 401 || res.status === 403) { window.location.href = 'admin-login.html'; return; }
+    const data = await res.json();
+    
+    if ($.fn.DataTable.isDataTable('#testiTableEl')) {
+        $('#testiTableEl').DataTable().destroy();
+    }
+
+    let html = '';
+    data.forEach(t => {
+        html += `<tr>
+            <td class="fw-bold">${t.name}</td>
+            <td>${t.role}</td>
+            <td class="text-truncate" style="max-width:200px;" title="${t.quote}">${t.quote}</td>
+            <td><button class="btn btn-sm btn-outline-danger" onclick="deleteTesti('${t.id || t._id}')"><i class="fa-solid fa-trash"></i></button></td>
+        </tr>`;
+    });
+    document.getElementById('testiTable').innerHTML = html;
+
+    initAdminDataTable('#testiTableEl', {
+        searchPlaceholder: "Search by Name or Role..."
+    });
+}
+window.refreshTableData = loadTesti;
+
+document.getElementById('testiForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    await fetch('/api/testimonials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify({
+            name: document.getElementById('tName').value,
+            role: document.getElementById('tRole').value,
+            quote: document.getElementById('tQuote').value
+        })
+    });
+    document.getElementById('testiForm').reset();
+    loadTesti();
+});
+
+async function deleteTesti(id) {
+    if(await UIModals.confirm('Confirm', 'Delete testimonial?', 'Confirm', 'danger')) {
+        
+        await fetch('/api/testimonials/' + id, { method: 'DELETE' });
+        loadTesti();
+    }
+}
+loadTesti();
+
+</script>
+
+    <script>
+        // Fetch and display user role
+        async function fetchUserRole() {
+            try {
+                const res = await fetch('/api/auth/me');
+                if (res.ok) {
+                    const user = await res.json();
+                    const roleDisplay = document.getElementById('headerUserRoleDisplay');
+                    if (roleDisplay) {
+                        roleDisplay.innerText = user.role;
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to fetch user role:', e);
+            }
+        }
+        fetchUserRole();
+    </script>
+
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/ui-modals.js"></script>
+    <script src="../assets/js/admin-layout.js"></script>
+</body>
+</html>

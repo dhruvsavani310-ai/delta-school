@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Teachers | Delta International School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css" rel="stylesheet">
+    <link href="../assets/css/admin-datatables.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+    <!-- Anti-caching for protected routes -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="../assets/css/admin-layout.css">
+</head>
+<body>
+    <div id="loadingOverlay">
+        <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+        <h5 class="text-muted">Loading Teachers...</h5>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <button id="sidebarCloseBtn" class="sidebar-close-btn d-md-none"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#" class="brand d-flex align-items-center" style="gap: 10px; padding: 15px 20px;">
+            <img src="../assets/images/logo.png" alt="Logo" style="height: 35px; width: auto; flex-shrink: 0;">
+            <span style="font-size: 15px; line-height: 1.2; white-space: normal; text-align: left;">Delta International School</span>
+        </a>
+                <a href="admin-dashboard.html" class="nav-item"><i class="fa-solid fa-table-columns"></i> <span>Dashboard</span></a>
+        <a href="admin-announcements.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> <span>Announcements</span></a>
+        <a href="admin-admissions.html" class="nav-item"><i class="fa-solid fa-user-graduate"></i> <span>Admissions</span></a>
+        <a href="admin-teachers.html" class="nav-item active"><i class="fa-solid fa-chalkboard-user"></i> <span>Teachers</span></a>
+        <a href="admin-top-students.html" class="nav-item"><i class="fa-solid fa-award"></i> <span>Top Students</span></a>
+        <a href="admin-events.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i> <span>Events</span></a>
+        <a href="admin-gallery.html" class="nav-item"><i class="fa-solid fa-images"></i> <span>Gallery</span></a>
+        <a href="admin-enquiries.html" class="nav-item"><i class="fa-solid fa-envelope"></i> <span>Enquiries</span></a>
+        <a href="admin-content.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> <span>Site Content</span></a>
+        <a href="admin-settings.html" class="nav-item"><i class="fa-solid fa-gear"></i> <span>App Settings</span></a>
+        <a href="admin-users.html" class="nav-item"><i class="fa-solid fa-users-gear"></i> <span>Admin Users</span></a>
+</div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <button id="mobileMenuToggle" class="mobile-toggle-btn d-md-none"><i class="fa-solid fa-bars"></i></button>
+            <h4 class="mb-0 fw-bold" style="color: var(--primary-color);">Manage Teachers</h4>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary" onclick="openAddModal()"><i class="fa-solid fa-plus me-2"></i> Add Teacher</button>
+                <div class="ms-3 text-end">
+                    <span class="d-block fw-bold" id="headerUserRoleDisplay" style="font-size: 14px;">Loading...</span>
+                    <span class="d-block text-muted" style="font-size: 12px; cursor: pointer;" onclick="showLogoutModal()">Log out</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle" id="teachersTableEl" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Name</th>
+                                <th>Subject</th>
+                                <th>Qualification</th>
+                                <th>Experience</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teachersTable">
+                            <tr class="skeleton-row"><td colspan="7"><div class="skeleton-box"></div></td></tr>
+                            <tr class="skeleton-row"><td colspan="7"><div class="skeleton-box"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Modal -->
+    <div class="modal fade" id="teacherModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Add Teacher</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="teacherForm">
+                        <input type="hidden" id="teacherId">
+                        <div class="mb-3 text-center">
+                            <img id="previewPhoto" src="https://via.placeholder.com/100" class="rounded-circle mb-2" style="width:100px; height:100px; object-fit:cover;">
+                            <input type="file" id="photo" class="form-control" accept="image/*" onchange="previewImage(event)">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Subject</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Qualification</label>
+                            <input type="text" class="form-control" id="qualification">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Experience (e.g., 5 years)</label>
+                            <input type="text" class="form-control" id="experience">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Status</label>
+                            <select id="status" class="form-select">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">Save Teacher</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    </div>
+
+    <!-- jQuery & DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <script src="../assets/js/admin-datatables.js"></script>
+    <script src="../assets/js/ui-modals.js"></script>
+    <script>
+        const teacherModal = new bootstrap.Modal(document.getElementById('teacherModal'));
+
+        async function fetchTeachers() {
+            try {
+                const res = await fetch('/api/teachers/all');
+                if (res.status === 401 || res.status === 403) {
+                    window.location.href = 'admin-login.html';
+                    return;
+                }
+                const data = await res.json();
+                renderTable(data);
+                document.getElementById('loadingOverlay').style.display = 'none';
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loadingOverlay').style.display = 'none';
+                await UIModals.alert('Error', 'Failed to load teachers.', 'danger');
+            }
+        }
+
+        function renderTable(teachers) {
+            if ($.fn.DataTable.isDataTable('#teachersTableEl')) {
+                $('#teachersTableEl').DataTable().destroy();
+            }
+
+            const tbody = document.getElementById('teachersTable');
+            tbody.innerHTML = '';
+            teachers.forEach(t => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><img src="${t.photo || 'https://via.placeholder.com/50'}" style="width:50px; height:50px; object-fit:cover; border-radius:50%;"></td>
+                    <td class="fw-bold">${t.name}</td>
+                    <td>${t.subject}</td>
+                    <td>${t.qualification || '-'}</td>
+                    <td>${t.experience || '-'}</td>
+                    <td><span class="badge ${t.status === 'Active' ? 'bg-success' : 'bg-secondary'}">${t.status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary me-2" onclick="editTeacher(${t.id})"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deleteTeacher(${t.id})"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const uniqueSubjects = [...new Set(teachers.map(t => t.subject))].filter(Boolean).sort();
+            const uniqueStatuses = [...new Set(teachers.map(t => t.status))].filter(Boolean).sort();
+
+            initAdminDataTable('#teachersTableEl', {
+                searchPlaceholder: "Search by Teacher Name...",
+                filtersHtml: `
+                    <select id="filterDepartment" class="form-select dt-custom-filter">
+                        <option value="">All Departments/Subjects</option>
+                        ${uniqueSubjects.map(s => `<option value="${s}">${s}</option>`).join('')}
+                    </select>
+                    <select id="filterStatus" class="form-select dt-custom-filter">
+                        <option value="">All Statuses</option>
+                        ${uniqueStatuses.map(s => `<option value="${s}">${s}</option>`).join('')}
+                    </select>
+                `,
+                customFilterFn: function(settings, data, dataIndex) {
+                    const deptVal = ($('#filterDepartment').val() || '').toLowerCase();
+                    const statusVal = ($('#filterStatus').val() || '').toLowerCase();
+                    
+                    const rowDept = data[2].toLowerCase();
+                    const rowStatus = data[5].toLowerCase();
+                    
+                    if (deptVal && !rowDept.includes(deptVal)) return false;
+                    if (statusVal && !rowStatus.includes(statusVal)) return false;
+                    return true;
+                }
+            });
+        }
+
+        window.refreshTableData = fetchTeachers;
+
+        function openAddModal() {
+            document.getElementById('teacherForm').reset();
+            document.getElementById('teacherId').value = '';
+            document.getElementById('modalTitle').innerText = 'Add Teacher';
+            document.getElementById('previewPhoto').src = 'https://via.placeholder.com/100';
+            teacherModal.show();
+        }
+
+        async function editTeacher(id) {
+            try {
+                const res = await fetch('/api/teachers/all');
+                const teachers = await res.json();
+                const t = teachers.find(x => x.id === id);
+                if (t) {
+                    document.getElementById('teacherId').value = t.id;
+                    document.getElementById('name').value = t.name;
+                    document.getElementById('subject').value = t.subject;
+                    document.getElementById('qualification').value = t.qualification || '';
+                    document.getElementById('experience').value = t.experience || '';
+                    document.getElementById('status').value = t.status;
+                    document.getElementById('previewPhoto').src = t.photo || 'https://via.placeholder.com/100';
+                    document.getElementById('modalTitle').innerText = 'Edit Teacher';
+                    teacherModal.show();
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('previewPhoto');
+                output.src = reader.result;
+            };
+            if(event.target.files[0]) reader.readAsDataURL(event.target.files[0]);
+        }
+
+        document.getElementById('teacherForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const id = document.getElementById('teacherId').value;
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('subject', document.getElementById('subject').value);
+            formData.append('qualification', document.getElementById('qualification').value);
+            formData.append('experience', document.getElementById('experience').value);
+            formData.append('status', document.getElementById('status').value);
+            
+            const photoInput = document.getElementById('photo');
+            if (photoInput.files[0]) {
+                formData.append('photo', photoInput.files[0]);
+            }
+
+            try {
+                const url = id ? `/api/teachers/${id}` : '/api/teachers';
+                const method = id ? 'PUT' : 'POST';
+                const res = await fetch(url, { method, body: formData });
+                if (res.ok) {
+                    teacherModal.hide();
+                    fetchTeachers();
+                } else {
+                    const data = await res.json();
+                    await UIModals.alert('Error', data.message || 'Error saving teacher', 'danger');
+                }
+            } catch (err) {
+                console.error(err);
+                await UIModals.alert('Error', 'Connection error', 'danger');
+            }
+        });
+
+        async function deleteTeacher(id) {
+            if(await UIModals.confirm('Confirm', 'Are you sure you want to delete this teacher?', 'Confirm', 'danger')) {
+                try {
+                    const res = await fetch(`/api/teachers/${id}`, { method: 'DELETE' });
+                    if (res.ok) fetchTeachers();
+                    else await UIModals.alert('Error', 'Error deleting teacher', 'danger');
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        }
+
+        
+        async function showLogoutModal() {
+            const confirmed = await UIModals.confirm('Logout', 'Are you sure you want to logout?', 'Logout', 'danger');
+            if(confirmed) {
+                confirmLogout();
+            }
+        }
+
+        async function confirmLogout() {
+            try {
+                await fetch('/api/auth/logout', { method: 'POST' });
+            } catch(e) { console.error(e); }
+            
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace('admin-login.html');
+        }
+
+
+        document.addEventListener('DOMContentLoaded', fetchTeachers);
+    </script>
+
+    <script>
+        // Fetch and display user role
+        async function fetchUserRole() {
+            try {
+                const res = await fetch('/api/auth/me');
+                if (res.ok) {
+                    const user = await res.json();
+                    const roleDisplay = document.getElementById('headerUserRoleDisplay');
+                    if (roleDisplay) {
+                        roleDisplay.innerText = user.role;
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to fetch user role:', e);
+            }
+        }
+        fetchUserRole();
+    </script>
+    <script src="../assets/js/admin-layout.js"></script>
+</body>
+</html>

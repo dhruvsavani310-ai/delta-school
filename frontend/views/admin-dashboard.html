@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Delta International School</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+    <!-- Anti-caching for protected routes -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="../assets/css/admin-layout.css">
+</head>
+<body>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+        <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+        <h5 class="text-muted">Authenticating...</h5>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <button id="sidebarCloseBtn" class="sidebar-close-btn d-md-none"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#" class="brand d-flex align-items-center" style="gap: 10px; padding: 15px 20px;">
+            <img src="../assets/images/logo.png" alt="Logo" style="height: 35px; width: auto; flex-shrink: 0;">
+            <span style="font-size: 15px; line-height: 1.2; white-space: normal; text-align: left;">Delta International School</span>
+        </a>
+        
+                <a href="admin-dashboard.html" class="nav-item active"><i class="fa-solid fa-table-columns"></i> <span>Dashboard</span></a>
+        <a href="admin-announcements.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> <span>Announcements</span></a>
+        <a href="admin-admissions.html" class="nav-item"><i class="fa-solid fa-user-graduate"></i> <span>Admissions</span></a>
+        <a href="admin-teachers.html" class="nav-item"><i class="fa-solid fa-chalkboard-user"></i> <span>Teachers</span></a>
+        <a href="admin-top-students.html" class="nav-item"><i class="fa-solid fa-award"></i> <span>Top Students</span></a>
+        <a href="admin-events.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i> <span>Events</span></a>
+        <a href="admin-gallery.html" class="nav-item"><i class="fa-solid fa-images"></i> <span>Gallery</span></a>
+        <a href="admin-enquiries.html" class="nav-item"><i class="fa-solid fa-envelope"></i> <span>Enquiries</span></a>
+        <a href="admin-content.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> <span>Site Content</span></a>
+        <a href="admin-settings.html" class="nav-item"><i class="fa-solid fa-gear"></i> <span>App Settings</span></a>
+        <a href="admin-users.html" class="nav-item"><i class="fa-solid fa-users-gear"></i> <span>Admin Users</span></a>
+</div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <button id="mobileMenuToggle" class="mobile-toggle-btn d-md-none"><i class="fa-solid fa-bars"></i></button>
+            <h4 class="mb-0 fw-bold" style="color: var(--primary-color);">Overview</h4>
+            <div class="d-flex align-items-center">
+                <div class="me-3 text-end">
+                    <span class="d-block fw-bold" id="headerUserRoleDisplay" style="font-size: 14px;">Loading...</span>
+                    <span class="d-block text-muted" style="font-size: 12px; cursor: pointer;" onclick="showLogoutModal()">Log out</span>
+                </div>
+                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="row g-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="info">
+                        <h3 id="stat-admissions">-</h3>
+                        <p>Admissions</p>
+                    </div>
+                    <div class="icon" style="background: rgba(61, 52, 139, 0.1); color: var(--primary-color);">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="info">
+                        <h3 id="stat-events">-</h3>
+                        <p>Events</p>
+                    </div>
+                    <div class="icon" style="background: rgba(229, 0, 138, 0.1); color: var(--secondary-color);">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="info">
+                        <h3 id="stat-gallery">-</h3>
+                        <p>Gallery Photos</p>
+                    </div>
+                    <div class="icon" style="background: rgba(0, 153, 255, 0.1); color: var(--blue-accent);">
+                        <i class="fa-solid fa-images"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="info">
+                        <h3 id="stat-enquiries">-</h3>
+                        <p>Enquiries</p>
+                    </div>
+                    <div class="icon" style="background: rgba(217, 45, 45, 0.1); color: var(--red-accent);">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Placeholder for recent activity tables -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-4" style="color: var(--primary-color);">Recent Enquiries</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentEnquiriesTable">
+                                    <tr><td colspan="4" class="text-center py-4">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Check Authentication
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            
+            
+
+            // Fetch Dashboard Stats
+            fetchStats();
+        });
+
+        async function fetchStats() {
+            try {
+                const response = await fetch('/api/dashboard/stats', {
+                    headers: {
+                        }
+                });
+
+                if (response.status === 401 || response.status === 403) {
+                    // Token expired or invalid
+                    await fetch('/api/auth/logout', { method: 'POST' });
+                    window.location.href = 'admin-login.html';
+                    return;
+                }
+
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Update Stat Cards
+                    document.getElementById('stat-admissions').innerText = data.stats.totalAdmissions;
+                    document.getElementById('stat-events').innerText = data.stats.totalEvents;
+                    document.getElementById('stat-gallery').innerText = data.stats.totalGalleryPhotos;
+                    document.getElementById('stat-enquiries').innerText = data.stats.totalEnquiries;
+
+                    // Update Recent Enquiries Table
+                    const tbody = document.getElementById('recentEnquiriesTable');
+                    if (data.recentEnquiries.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted py-4">No recent enquiries found.</td></tr>';
+                    } else {
+                        tbody.innerHTML = '';
+                        data.recentEnquiries.forEach(enq => {
+                            const date = new Date(enq.submittedAt).toLocaleDateString();
+                            const badgeClass = enq.status === 'Pending' ? 'bg-warning text-dark' : 
+                                              (enq.status === 'Resolved' ? 'bg-success' : 'bg-info');
+                            
+                            tbody.innerHTML += `
+                                <tr>
+                                    <td class="fw-bold">${enq.name}</td>
+                                    <td>${enq.email}</td>
+                                    <td>${date}</td>
+                                    <td><span class="badge ${badgeClass} rounded-pill">${enq.status}</span></td>
+                                </tr>
+                            `;
+                        });
+                    }
+
+                    // Hide Loader
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }
+            } catch (err) {
+                console.error('Error fetching dashboard data:', err);
+                document.getElementById('loadingOverlay').style.display = 'none';
+                await UIModals.alert('Error', 'Connection error. Please try again.', 'danger');
+            }
+        }
+
+        
+        async function showLogoutModal() {
+            const confirmed = await UIModals.confirm('Logout', 'Are you sure you want to logout?', 'Logout', 'danger');
+            if(confirmed) {
+                confirmLogout();
+            }
+        }
+
+        async function confirmLogout() {
+            try {
+                await fetch('/api/auth/logout', { method: 'POST' });
+            } catch(e) { console.error(e); }
+            
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.replace('admin-login.html');
+        }
+
+    </script>
+
+    <script>
+        // Fetch and display user role
+        async function fetchUserRole() {
+            try {
+                const res = await fetch('/api/auth/me');
+                if (res.ok) {
+                    const user = await res.json();
+                    const roleDisplay = document.getElementById('headerUserRoleDisplay');
+                    if (roleDisplay) {
+                        roleDisplay.innerText = user.role;
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to fetch user role:', e);
+            }
+        }
+        fetchUserRole();
+    </script>
+
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/ui-modals.js"></script>
+    <script src="../assets/js/admin-layout.js"></script>
+</body>
+</html>

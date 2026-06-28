@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery | Delta International School</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    
+    
+    
+
+
+    
+    <global-header></global-header>
+
+    <!-- Header Section -->
+    <header class="gallery-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3 font-outfit">Photo Gallery</h1>
+            <p class="lead mb-0 opacity-75">Capturing the best moments of our students' journey.</p>
+        </div>
+    </header>
+
+    <!-- Gallery Container -->
+    <div class="container my-5 pb-5">
+        
+        <!-- Filter Buttons -->
+        <div class="text-center mb-4" id="filterContainer">
+            <button class="filter-btn active" data-filter="All">All</button>
+            <button class="filter-btn" data-filter="Annual Day">Annual Day</button>
+            <button class="filter-btn" data-filter="Sports Day">Sports Day</button>
+            <button class="filter-btn" data-filter="Science Fair">Science Fair</button>
+            <button class="filter-btn" data-filter="Cultural Program">Cultural Program</button>
+            <button class="filter-btn" data-filter="School Trip">School Trip</button>
+        </div>
+
+        <!-- Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Loader -->
+            <div class="text-center w-100 py-5" id="loader">
+                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Lightbox Modal -->
+    <div id="customLightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+        <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold d-flex align-items-center mb-4">
+                        <i class="fa-solid fa-graduation-cap me-2" style="color: var(--secondary-color);"></i> Delta
+                        School
+                    </h5>
+                    <p class="mb-4">Empowering students with knowledge, skills, and values to excel in a dynamic world.
+                    </p>
+                    <div class="d-flex">
+                        <a href="https://www.facebook.com/people/Delta-International-School/61575980519945/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)" class="social-icon" title="Coming Soon" aria-label="Twitter (Coming Soon)"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/delta.international.school/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="javascript:void(0)" class="social-icon" title="Coming Soon" aria-label="LinkedIn (Coming Soon)"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="fw-bold">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html#about">About Us</a></li>
+                        <li class="mb-2"><a href="index.html#admission">Admissions</a></li>
+                        <li class="mb-2"><a href="teachers.html">Teachers</a></li>
+                        <li class="mb-2"><a href="top-students.html">Top Students</a></li>
+                        <li class="mb-2"><a href="index.html#events">Events</a></li>
+                        <li class="mb-2"><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex">
+                            <i class="fa-solid fa-location-dot mt-1 me-3" style="color: var(--secondary-color);"></i>
+                            <span>123 Education Lane, Vesu,<br>Surat, Gujarat 395007</span>
+                        </li>
+                        <li class="mb-3 d-flex">
+                            <i class="fa-solid fa-phone mt-1 me-3" style="color: var(--secondary-color);"></i>
+                            <span>+91 98765 43210<br>+91 261 2345678</span>
+                        </li>
+                        <li class="mb-3 d-flex">
+                            <i class="fa-solid fa-envelope mt-1 me-3" style="color: var(--secondary-color);"></i>
+                            <span>info@deltaschool.edu.in</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold">Newsletter</h5>
+                    <p>Subscribe to get the latest news and updates.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control rounded-start-pill border-0 px-4 py-2"
+                                placeholder="Your Email" aria-label="Your Email">
+                            <button class="btn btn-secondary-custom rounded-end-pill px-4 py-2 m-0" type="button"
+                                style="border-radius: 0 50px 50px 0 !important; box-shadow: none;">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4 border-light opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2026 Delta International School. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <a href="#" class="me-3">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Gallery Logic Script -->
+    <script>
+        // Fallback images if database is empty
+        const fallbackGallery = [
+            { imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80", category: "Cultural Program" },
+            { imageUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80", category: "Sports Day" },
+            { imageUrl: "https://images.unsplash.com/photo-1511629091441-ee46146481b6?auto=format&fit=crop&w=800&q=80", category: "Science Fair" },
+            { imageUrl: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80", category: "Annual Day" },
+            { imageUrl: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80", category: "School Trip" },
+            { imageUrl: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&q=80", category: "Sports Day" },
+            { imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80", category: "Annual Day" },
+            { imageUrl: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80", category: "Science Fair" }
+        ];
+
+        let allImages = [];
+
+        async function fetchGallery() {
+            try {
+                const response = await fetch('/api/gallery');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.length > 0) {
+                        allImages = data;
+                    } else {
+                        allImages = fallbackGallery;
+                    }
+                } else {
+                    allImages = fallbackGallery;
+                }
+            } catch (error) {
+                console.error('Error fetching gallery:', error);
+                allImages = fallbackGallery;
+            } finally {
+                renderGallery('All');
+            }
+        }
+
+        function normalizeCategory(cat) {
+            if (!cat) return "";
+            // Lowercase, trim, and remove all spaces, hyphens, and underscores
+            return cat.trim().toLowerCase().replace(/[-\s_]+/g, '');
+        }
+
+        function renderGallery(filterCategory) {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            const normalizedFilter = normalizeCategory(filterCategory);
+
+            const filteredImages = filterCategory === 'All' 
+                ? allImages 
+                : allImages.filter(img => {
+                    const normalizedImgCat = normalizeCategory(img.category);
+                    const isMatch = normalizedImgCat === normalizedFilter;
+                    
+                    // Console logs for debugging as requested
+                    console.log(`Selected category: ${filterCategory}`);
+                    console.log(`Image category: ${img.category}`);
+                    console.log(`Match result: ${isMatch}`);
+                    
+                    return isMatch;
+                });
+
+            if (filteredImages.length === 0) {
+                grid.innerHTML = '<div class="col-12 text-center text-muted py-5 w-100"><h4>No images found for this category.</h4></div>';
+                return;
+            }
+
+            filteredImages.forEach((item) => {
+                const itemHTML = `
+                    <div class="gallery-item" onclick="openLightbox('${item.imageUrl}', '${item.category}')">
+                        <img src="${item.imageUrl}" alt="${item.category}">
+                        <div class="overlay">
+                            <h5 class="mb-0 fw-bold">${item.category}</h5>
+                            <small class="text-white-50"><i class="fa-solid fa-expand me-1"></i> View Full</small>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += itemHTML;
+            });
+        }
+
+        // Filter Button Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active to clicked
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                renderGallery(filter);
+            });
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById("customLightbox");
+        const lightboxImg = document.getElementById("lightboxImg");
+        const captionText = document.getElementById("lightboxCaption");
+
+        function openLightbox(src, category) {
+            lightbox.style.display = "block";
+            lightboxImg.src = src;
+            captionText.innerHTML = category;
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = "none";
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox on clicking outside the image
+        lightbox.addEventListener('click', function(e) {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', fetchGallery);
+    </script>
+    <script src="../assets/js/global-header.js" defer></script>
+</body>
+</html>

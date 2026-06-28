@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details | Delta International School</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+</head>
+<body>
+
+    <global-header></global-header>
+
+    <!-- Header Section -->
+    <header class="page-header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3 font-outfit" id="headerTitle">Event Details</h1>
+            <p class="lead mb-0 opacity-75" id="headerSubtitle">Loading event information...</p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container my-5 py-4 min-vh-50" id="mainContent">
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Logic -->
+    <script>
+        function formatDate(dateString) {
+            if (!dateString) return null;
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return null;
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return {
+                day: date.getDate(),
+                month: months[date.getMonth()],
+                fullDate: date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+            };
+        }
+
+        async function loadEvent() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+
+            const mainContent = document.getElementById('mainContent');
+            const headerTitle = document.getElementById('headerTitle');
+            const headerSubtitle = document.getElementById('headerSubtitle');
+
+            if (!eventId) {
+                showError("No Event ID Provided", "We couldn't find the event you're looking for because the link is invalid.");
+                return;
+            }
+
+            try {
+                // Fetch all events since we might not have a specific ID endpoint
+                const res = await fetch('/api/events');
+                if (!res.ok) throw new Error('Failed to fetch events');
+                
+                const events = await res.json();
+                
+                // Find the event by id (handling both string id and mongo _id)
+                const event = events.find(e => String(e.id) === eventId || String(e._id) === eventId);
+
+                if (!event) {
+                    showError("Event Not Found", "The event you are looking for does not exist or has been removed.");
+                    return;
+                }
+
+                // Populate Content
+                headerTitle.innerText = event.title;
+                
+                const dateInfo = formatDate(event.eventDate || event.date);
+                const displayDate = dateInfo ? dateInfo.fullDate : 'Date Coming Soon';
+                headerSubtitle.innerHTML = `<i class="fa-regular fa-calendar me-2"></i> ${displayDate}`;
+
+                let dateBadgeHtml = '';
+                if (dateInfo) {
+                    dateBadgeHtml = `
+                        <div class="date-badge" style="position: absolute; top: 20px; left: 20px; z-index: 10; background: white; padding: 10px 15px; border-radius: 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                            <span class="day d-block fs-3 fw-bold mb-n1" style="color: var(--primary-color);">${dateInfo.day}</span>
+                            <span class="month text-uppercase fw-bold" style="color: var(--secondary-color); font-size: 0.85rem;">${dateInfo.month}</span>
+                        </div>
+                    `;
+                } else {
+                    dateBadgeHtml = `
+                        <div class="date-badge d-flex align-items-center justify-content-center p-2" style="position: absolute; top: 20px; left: 20px; z-index: 10; width: 80px; height: 80px; text-align: center; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                            <span class="month text-center mb-0 text-uppercase fw-bold" style="color: var(--primary-color); font-size: 0.75rem; line-height: 1.2;">Date<br>TBA</span>
+                        </div>
+                    `;
+                }
+
+                mainContent.innerHTML = `
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-5">
+                                <div class="position-relative" style="height: 450px;">
+                                    ${dateBadgeHtml}
+                                    <img src="${event.imageUrl || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&w=1200&q=80'}" 
+                                         alt="${event.title}" 
+                                         class="w-100 h-100" 
+                                         style="object-fit: cover; display: block;">
+                                </div>
+                                <div class="card-body p-5 bg-white">
+                                    <div class="d-flex align-items-center mb-4 text-muted border-bottom pb-3">
+                                        <div class="me-4"><i class="fa-solid fa-calendar-day me-2 text-primary"></i> ${displayDate}</div>
+                                        <div><i class="fa-solid fa-location-dot me-2 text-primary"></i> ${event.location || 'Delta International School Campus'}</div>
+                                    </div>
+                                    <h2 class="fw-bold mb-4 font-outfit" style="color: var(--primary-color);">${event.title}</h2>
+                                    <div class="event-description fs-5 text-muted" style="line-height: 1.8;">
+                                        ${event.description.replace(/\n/g, '<br>')}
+                                    </div>
+                                    
+                                    <div class="mt-5 pt-4 border-top text-center">
+                                        <a href="index.html#events" class="btn btn-outline-primary rounded-pill px-5 py-2 fw-bold">
+                                            <i class="fa-solid fa-arrow-left me-2"></i> Back to All Events
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            } catch (err) {
+                console.error("Error loading event", err);
+                showError("Connection Error", "We couldn't connect to the server to load the event details. Please try again later.");
+            }
+        }
+
+        function showError(title, message) {
+            document.getElementById('headerTitle').innerText = title;
+            document.getElementById('headerSubtitle').innerText = "Oops, something went wrong.";
+            document.getElementById('mainContent').innerHTML = `
+                <div class="text-center py-5">
+                    <i class="fa-solid fa-calendar-xmark text-muted mb-4" style="font-size: 5rem; opacity: 0.5;"></i>
+                    <h2 class="fw-bold text-dark mb-3">${title}</h2>
+                    <p class="lead text-muted mb-4">${message}</p>
+                    <a href="index.html#events" class="btn btn-primary rounded-pill px-4 py-2">View All Events</a>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadEvent);
+    </script>
+    <script src="../assets/js/global-header.js" defer></script>
+</body>
+</html>

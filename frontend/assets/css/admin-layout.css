@@ -1,0 +1,422 @@
+/* 
+===================================================
+Admin Panel - Premium SaaS Layout (Mobile First)
+===================================================
+*/
+
+:root {
+    /* Premium Color Palette */
+    --admin-bg: #F7F8FC;
+    --admin-card-bg: #ffffff;
+    --admin-border: #E5E7EB;
+    --admin-text-primary: #1F2937;
+    --admin-text-secondary: #6B7280;
+    
+    --admin-success: #10B981;
+    --admin-warning: #F59E0B;
+    --admin-danger: #EF4444;
+
+    /* Sizes */
+    --sidebar-width-desktop: 260px;
+    --sidebar-width-tablet: 80px;
+    --topbar-height: 70px;
+}
+
+body {
+    background-color: var(--admin-bg);
+    color: var(--admin-text-primary);
+    font-family: 'Inter', 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* -------------------------------------
+   LAYOUT WRAPPER
+------------------------------------- */
+.admin-layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* -------------------------------------
+   SIDEBAR (Mobile First - Off-canvas)
+------------------------------------- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px; /* Slightly wider on mobile for touch targets */
+    height: 100vh;
+    background-color: var(--primary-color);
+    color: white;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 25px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar.show {
+    transform: translateX(0);
+}
+
+/* Custom Scrollbar for Sidebar */
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
+.sidebar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+/* Sidebar Brand */
+.sidebar .brand {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    background-color: var(--primary-color);
+    z-index: 10;
+    text-decoration: none;
+    color: white;
+}
+.sidebar .brand img {
+    height: 35px;
+    width: auto;
+}
+.sidebar .brand span {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Close Button (Mobile Only) */
+.sidebar-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: block; /* Visible on mobile */
+    z-index: 20;
+}
+
+/* Sidebar Navigation */
+.sidebar a.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.25s ease;
+}
+.sidebar a.nav-item:first-of-type {
+    margin-top: 20px; /* equivalent to brand + a.nav-item */
+}
+.sidebar a.nav-item i {
+    width: 24px;
+    font-size: 18px;
+    text-align: center;
+    margin-right: 12px;
+    transition: transform 0.25s ease;
+}
+.sidebar a.nav-item span {
+    white-space: nowrap;
+}
+.sidebar a.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateX(4px);
+}
+.sidebar a.nav-item.active {
+    background-color: white;
+    color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* -------------------------------------
+   BACKDROP (Mobile Overlay)
+------------------------------------- */
+.sidebar-backdrop {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.sidebar-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* -------------------------------------
+   MAIN CONTENT AREA
+------------------------------------- */
+.main-content {
+    flex: 1;
+    min-width: 0;
+    margin-left: 0; /* Default mobile: 0 */
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* -------------------------------------
+   TOP APP BAR
+------------------------------------- */
+.topbar {
+    height: var(--topbar-height);
+    background: var(--admin-card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+    z-index: 100;
+}
+
+.mobile-toggle-btn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--admin-text-primary);
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 15px;
+    display: block; /* Visible by default on mobile */
+}
+
+/* -------------------------------------
+   CARDS & STATS
+------------------------------------- */
+.stat-card {
+    background: var(--admin-card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    border: 1px solid var(--admin-border);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    height: 100%;
+}
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+}
+.stat-card .info h3 {
+    margin: 0 0 4px 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--admin-text-primary);
+}
+.stat-card .info p {
+    margin: 0;
+    color: var(--admin-text-secondary);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.stat-card .icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+/* Standard Content Card */
+.card {
+    background: var(--admin-card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid var(--admin-border) !important;
+}
+
+/* -------------------------------------
+   RESPONSIVE TABLES
+------------------------------------- */
+.table-responsive {
+    border-radius: 12px;
+    /* Soft border for the table container */
+    border: 1px solid var(--admin-border);
+}
+.table {
+    margin-bottom: 0;
+}
+.table thead th {
+    background-color: #F8FAFC;
+    color: var(--admin-text-secondary);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 16px;
+    border-bottom: 2px solid var(--admin-border);
+    white-space: nowrap;
+}
+.table tbody td {
+    padding: 16px;
+    vertical-align: middle;
+    color: var(--admin-text-primary);
+    border-bottom: 1px solid var(--admin-border);
+}
+.table tbody tr:hover {
+    background-color: #F8FAFC; /* Subtle hover row */
+}
+
+/* -------------------------------------
+   MODALS
+------------------------------------- */
+.modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+.modal-header {
+    border-bottom: 1px solid var(--admin-border);
+    padding: 20px 24px;
+}
+.modal-body {
+    padding: 24px;
+}
+.modal-footer {
+    border-top: 1px solid var(--admin-border);
+    padding: 16px 24px;
+}
+
+/* Inputs */
+.form-control, .form-select {
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid var(--admin-border);
+    padding: 10px 16px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(61, 52, 139, 0.1);
+}
+
+/* Buttons */
+.btn {
+    height: 48px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    transition: all 0.2s ease;
+}
+.btn-sm {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+/* -------------------------------------
+   MEDIA QUERIES (Responsive Breakpoints)
+------------------------------------- */
+
+/* Tablet (>= 768px) */
+@media (min-width: 768px) {
+    /* Collapse Sidebar by Default on Tablet */
+    .sidebar {
+        width: var(--sidebar-width-tablet);
+        transform: translateX(0); /* Always visible */
+    }
+    
+    /* Hide Brand Text and Close Button */
+    .sidebar .brand span { display: none; }
+    .sidebar-close-btn { display: none; }
+    
+    /* Center icons, hide text */
+    .sidebar a.nav-item {
+        justify-content: center;
+        padding: 12px 0;
+    }
+    .sidebar a.nav-item i {
+        margin-right: 0;
+        font-size: 20px;
+    }
+    /* Specifically hide the text inside the anchor tags. The current structure has text directly inside a.nav-item, not wrapped in a span. Wait, let me check admin-dashboard.html */
+    
+    .main-content {
+        margin-left: var(--sidebar-width-tablet);
+    }
+    
+    .mobile-toggle-btn {
+        display: none; /* Hide hamburger */
+    }
+}
+
+/* Desktop (>= 1200px) */
+@media (min-width: 1200px) {
+    /* Full Sidebar */
+    .sidebar {
+        width: var(--sidebar-width-desktop);
+    }
+    
+    .sidebar .brand span { display: inline-block; }
+    
+    .sidebar a.nav-item {
+        justify-content: flex-start;
+        padding: 12px 15px;
+    }
+    .sidebar a.nav-item i {
+        margin-right: 15px;
+    }
+    /* We will need to wrap text in <span> using the node script to easily hide/show it, or use a pseudo-class trick. Wrapping in <span> is better */
+    
+    .main-content {
+        margin-left: var(--sidebar-width-desktop);
+        padding: 30px;
+    }
+}
+
+/* DataTables Toolbars override for Mobile */
+@media (max-width: 767px) {
+    .dt-toolbar-container {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 15px;
+    }
+    .dt-search-box {
+        width: 100% !important;
+    }
+    .dt-search-box:focus-within {
+        width: 100% !important;
+    }
+    .dt-filters {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+    .dt-filters select {
+        width: 100% !important;
+    }
+}

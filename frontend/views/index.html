@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta International School, Surat</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/png" href="../assets/images/logo.png">
+</head>
+
+<body>
+
+    
+    
+    
+    
+    
+
+
+    
+    <global-header></global-header>
+
+    <!-- Hero Banner Carousel -->
+    <header class="hero-section" style="padding-top: 80px;">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false">
+            <div class="carousel-inner" style="background-color: #000;" id="heroCarouselInner">
+                <div class="carousel-item active hero-carousel-item d-flex align-items-center justify-content-center text-white">Loading Banners...</div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1) grayscale(100); opacity: 0.5;"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1) grayscale(100); opacity: 0.5;"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- About School Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="About Delta School" class="img-fluid rounded-4 shadow-lg" id="aboutImageTag">
+                        <div class="position-absolute bottom-0 end-0 bg-white p-4 rounded-4 shadow-lg mb-n4 me-n4 d-none d-md-block"
+                            style="border: 3px solid var(--secondary-color);">
+                            <h3 class="fw-bold mb-0" style="color: var(--primary-color);" id="aboutYearsNumText">20+</h3>
+                            <p class="mb-0 text-muted" id="aboutYearsTextContent">Years of Excellence</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ps-lg-4">
+                        <h6 class="text-uppercase fw-bold" style="color: var(--red-accent); letter-spacing: 2px;">About
+                            Us</h6>
+                        <div id="aboutUsContainer">
+                            <h2 class="display-5 fw-bold mb-4" style="color: var(--primary-color);" id="aboutTitleText">Loading...</h2>
+                            <p class="lead text-muted mb-4" id="aboutBodyText">Please wait while content is loaded.</p>
+                        </div>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-3"><i class="fa-solid fa-check-circle me-2"
+                                    style="color: var(--blue-accent);"></i> <span id="aboutFeature1Text">Holistic Development Approach</span></li>
+                            <li class="mb-3"><i class="fa-solid fa-check-circle me-2"
+                                    style="color: var(--blue-accent);"></i> <span id="aboutFeature2Text">Advanced Curriculum Integration</span></li>
+                            <li class="mb-3"><i class="fa-solid fa-check-circle me-2"
+                                    style="color: var(--blue-accent);"></i> <span id="aboutFeature3Text">Focus on Extracurricular Activities</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-padding pt-0">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Why Choose Delta?</h2>
+                <p class="text-muted lead mx-auto" style="max-width: 600px;">Our facilities and teaching methodologies
+                    are tailored to provide the best educational experience.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-chalkboard-user feature-icon floating-icon"></i>
+                        <h4>Experienced Teachers</h4>
+                        <p class="text-muted mt-3">Highly qualified faculty dedicated to mentoring and guiding students
+                            to success.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-desktop feature-icon floating-icon" style="color: var(--red-accent);"></i>
+                        <h4>Smart Classrooms</h4>
+                        <p class="text-muted mt-3">Interactive learning environments equipped with the latest
+                            audio-visual tech.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-volleyball feature-icon floating-icon" style="color: var(--secondary-color);"></i>
+                        <h4>Sports Facilities</h4>
+                        <p class="text-muted mt-3">Expansive playgrounds and courts promoting physical well-being and
+                            teamwork.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-network-wired feature-icon floating-icon" style="color: var(--primary-color);"></i>
+                        <h4>Computer Labs</h4>
+                        <p class="text-muted mt-3">State-of-the-art labs fostering digital literacy and coding skills.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principal's Message -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="principal-section row g-0 align-items-center" id="principalContainer">
+                <div class="col-lg-5">
+                    <img src="" alt="Principal" class="principal-img" id="principalImageTag" style="display:none;">
+                </div>
+                <div class="col-lg-7 p-5 p-lg-5">
+                    <i class="fa-solid fa-quote-left fs-1 mb-4" style="color: var(--red-accent); opacity: 0.3;"></i>
+                    <h2 class="mb-4" style="color: var(--primary-color);">Principal's Message</h2>
+                    <p class="lead text-muted fst-italic mb-4" id="principalQuote">"Loading..."</p>
+                    <h5 class="fw-bold mb-1" id="principalName">Loading Name</h5>
+                    <p class="text-muted mb-0" id="principalRole">Loading Role</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Events -->
+    <section id="events" class="section-padding bg-white overflow-hidden">
+        <div class="container position-relative">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Latest Events & News</h2>
+            </div>
+            
+            <div class="swiper events-swiper pb-5" style="padding-top: 15px;">
+                <div class="swiper-wrapper" id="eventsContainer">
+                    <div class="col-12 text-center text-muted">Loading latest events...</div>
+                </div>
+                <!-- Swiper Navigation & Pagination -->
+                <div class="swiper-pagination events-pagination mt-4"></div>
+                <div class="swiper-button-prev events-button-prev" style="color: var(--primary-color);"></div>
+                <div class="swiper-button-next events-button-next" style="color: var(--primary-color);"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Preview -->
+    <section id="gallery" class="section-padding overflow-hidden">
+        <div class="container position-relative">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Life at Delta</h2>
+            </div>
+            
+            <div class="swiper gallery-swiper pb-5" style="padding-top: 15px;">
+                <div class="swiper-wrapper" id="galleryContainer">
+                    <div class="col-12 text-center text-muted">Loading gallery...</div>
+                </div>
+                <!-- Swiper Navigation & Pagination -->
+                <div class="swiper-pagination gallery-pagination mt-4"></div>
+                <div class="swiper-button-prev gallery-button-prev" style="color: var(--primary-color);"></div>
+                <div class="swiper-button-next gallery-button-next" style="color: var(--primary-color);"></div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="gallery.html" class="btn btn-outline-custom text-primary border-primary rounded-pill px-5 py-2 fw-bold"
+                    style="border-width: 2px;">View Full Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Lightbox Modal -->
+    <div class="modal fade lightbox-modal" id="homeGalleryLightbox" tabindex="-1" aria-hidden="true">
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-4 z-3" data-bs-dismiss="modal" aria-label="Close" style="width: 2rem; height: 2rem;"></button>
+        <div class="modal-dialog modal-fullscreen modal-dialog-centered bg-dark m-0">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-body p-0 d-flex align-items-center justify-content-center position-relative">
+                    <button class="btn btn-link text-white position-absolute start-0 ms-2 ms-md-4 z-3" id="lightboxPrev" style="font-size: 2rem; opacity: 0.8;"><i class="fa-solid fa-chevron-left"></i></button>
+                    
+                    <img src="" class="img-fluid rounded shadow-lg" id="lightboxImg" style="max-height: 90vh; max-width: 90vw; object-fit: contain; transform: scale(0.95); transition: transform 0.4s ease;">
+                    
+                    <button class="btn btn-link text-white position-absolute end-0 me-2 me-md-4 z-3" id="lightboxNext" style="font-size: 2rem; opacity: 0.8;"><i class="fa-solid fa-chevron-right"></i></button>
+                    
+                    <div class="position-absolute bottom-0 text-center w-100 pb-4 text-white">
+                        <h5 class="fw-bold mb-1" id="lightboxCaption"></h5>
+                        <small class="opacity-75" id="lightboxCounter">1 / 1</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admission Open CTA -->
+    <section id="admission" class="container mb-5 pb-5">
+        <div class="cta-section text-center position-relative overflow-hidden">
+            <div class="position-absolute rounded-circle"
+                style="width: 300px; height: 300px; background: rgba(255,255,255,0.1); top: -100px; left: -100px;">
+            </div>
+            <div class="position-absolute rounded-circle"
+                style="width: 200px; height: 200px; background: rgba(255,255,255,0.1); bottom: -50px; right: 50px;">
+            </div>
+
+            <h2 class="display-5 fw-bold mb-4 position-relative z-index-1">Admissions Open for 2026-2027</h2>
+            <p class="lead mb-5 position-relative z-index-1 mx-auto" style="max-width: 700px;">Give your child the gift
+                of a premier education. Enroll now and secure their future with Delta International School.</p>
+            <div class="position-relative z-index-1">
+                <a href="admissions.html"
+                    class="btn btn-light btn-lg text-primary fw-bold rounded-pill px-5 me-sm-3 mb-3 mb-sm-0 shadow-sm">Apply
+                    Online</a>
+                <a href="contact.html" class="btn btn-outline-light btn-lg rounded-pill px-5">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Parents Choose Us Section -->
+    <section class="section-padding bg-white overflow-hidden" id="why-choose-us">
+        <div class="container position-relative">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Why Parents Choose Delta International School</h2>
+                <p class="text-muted lead mt-3">Discover what makes Delta International School the preferred choice for students and parents.</p>
+            </div>
+            
+            <div class="swiper why-choose-swiper pb-5" style="padding-top: 15px;">
+                <div class="swiper-wrapper">
+                    <!-- Card 1 -->
+                    <div class="swiper-slide h-auto d-flex justify-content-center px-3 px-sm-0">
+                        <div class="why-card w-100 mx-auto text-center">
+                            <div class="icon-circle mx-auto mb-4" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-color), var(--blue-accent)); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.4s ease;">
+                                <i class="fa-solid fa-book-open-reader text-white fs-2"></i>
+                            </div>
+                            <h3 class="fw-bold mb-3" style="color: var(--primary-color);">Academic Excellence</h3>
+                            <p class="text-muted fs-5 mb-0" style="line-height: 1.6;">A well-structured curriculum that builds strong academic foundations while encouraging creativity, critical thinking and lifelong learning.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="swiper-slide h-auto d-flex justify-content-center px-3 px-sm-0">
+                        <div class="why-card w-100 mx-auto text-center">
+                            <div class="icon-circle mx-auto mb-4" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--secondary-color), #f39c12); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.4s ease;">
+                                <i class="fa-solid fa-chalkboard-user text-white fs-2"></i>
+                            </div>
+                            <h3 class="fw-bold mb-3" style="color: var(--primary-color);">Experienced Faculty</h3>
+                            <p class="text-muted fs-5 mb-0" style="line-height: 1.6;">Dedicated and qualified teachers who provide personal attention and guide every student towards success.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="swiper-slide h-auto d-flex justify-content-center px-3 px-sm-0">
+                        <div class="why-card w-100 mx-auto text-center">
+                            <div class="icon-circle mx-auto mb-4" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--red-accent), #e74c3c); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.4s ease;">
+                                <i class="fa-solid fa-desktop text-white fs-2"></i>
+                            </div>
+                            <h3 class="fw-bold mb-3" style="color: var(--primary-color);">Modern Learning Environment</h3>
+                            <p class="text-muted fs-5 mb-0" style="line-height: 1.6;">Smart classrooms, science laboratories, computer labs, library and digital learning facilities for better education.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 4 -->
+                    <div class="swiper-slide h-auto d-flex justify-content-center px-3 px-sm-0">
+                        <div class="why-card w-100 mx-auto text-center">
+                            <div class="icon-circle mx-auto mb-4" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #27ae60, #2ecc71); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.4s ease;">
+                                <i class="fa-solid fa-shield-halved text-white fs-2"></i>
+                            </div>
+                            <h3 class="fw-bold mb-3" style="color: var(--primary-color);">Safe & Secure Campus</h3>
+                            <p class="text-muted fs-5 mb-0" style="line-height: 1.6;">24×7 CCTV surveillance, disciplined environment, secure campus and student-friendly atmosphere.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 5 -->
+                    <div class="swiper-slide h-auto d-flex justify-content-center px-3 px-sm-0">
+                        <div class="why-card w-100 mx-auto text-center">
+                            <div class="icon-circle mx-auto mb-4" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #8e44ad, #9b59b6); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.4s ease;">
+                                <i class="fa-solid fa-volleyball text-white fs-2"></i>
+                            </div>
+                            <h3 class="fw-bold mb-3" style="color: var(--primary-color);">Sports & Co-Curricular</h3>
+                            <p class="text-muted fs-5 mb-0" style="line-height: 1.6;">Equal importance to academics, sports, arts, competitions, leadership and personality development.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 6 -->
+                    <div class="swiper-slide h-auto d-flex justify-content-center px-3 px-sm-0">
+                        <div class="why-card w-100 mx-auto text-center">
+                            <div class="icon-circle mx-auto mb-4" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #16a085, #1abc9c); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.4s ease;">
+                                <i class="fa-solid fa-handshake-angle text-white fs-2"></i>
+                            </div>
+                            <h3 class="fw-bold mb-3" style="color: var(--primary-color);">Strong Parent-School Communication</h3>
+                            <p class="text-muted fs-5 mb-0" style="line-height: 1.6;">Regular parent meetings, transparent communication and continuous updates about every child's progress.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Swiper Navigation & Pagination -->
+                <div class="swiper-pagination why-choose-pagination mt-4"></div>
+                <div class="swiper-button-prev why-choose-button-prev" style="color: var(--primary-color);"></div>
+                <div class="swiper-button-next why-choose-button-next" style="color: var(--primary-color);"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold d-flex align-items-center mb-4">
+                        <i class="fa-solid fa-graduation-cap me-2" style="color: var(--secondary-color);"></i> Delta
+                        School
+                    </h5>
+                    <p class="mb-4">Empowering students with knowledge, skills, and values to excel in a dynamic world.
+                    </p>
+                    <div class="d-flex">
+                        <a href="https://www.facebook.com/people/Delta-International-School/61575980519945/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)" class="social-icon" title="Coming Soon" aria-label="Twitter (Coming Soon)"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/delta.international.school/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="javascript:void(0)" class="social-icon" title="Coming Soon" aria-label="LinkedIn (Coming Soon)"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="fw-bold">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html#about">About Us</a></li>
+                        <li class="mb-2"><a href="index.html#admission">Admissions</a></li>
+                        <li class="mb-2"><a href="teachers.html">Teachers</a></li>
+                        <li class="mb-2"><a href="top-students.html">Top Students</a></li>
+                        <li class="mb-2"><a href="index.html#events">Events</a></li>
+                        <li class="mb-2"><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex">
+                            <i class="fa-solid fa-location-dot mt-1 me-3" style="color: var(--secondary-color);"></i>
+                            <span>123 Education Lane, Vesu,<br>Surat, Gujarat 395007</span>
+                        </li>
+                        <li class="mb-3 d-flex">
+                            <i class="fa-solid fa-phone mt-1 me-3" style="color: var(--secondary-color);"></i>
+                            <span>+91 98765 43210<br>+91 261 2345678</span>
+                        </li>
+                        <li class="mb-3 d-flex">
+                            <i class="fa-solid fa-envelope mt-1 me-3" style="color: var(--secondary-color);"></i>
+                            <span>info@deltaschool.edu.in</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold">Newsletter</h5>
+                    <p>Subscribe to get the latest news and updates.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control rounded-start-pill border-0 px-4 py-2"
+                                placeholder="Your Email" aria-label="Your Email">
+                            <button class="btn btn-secondary-custom rounded-end-pill px-4 py-2 m-0" type="button"
+                                style="border-radius: 0 50px 50px 0 !important; box-shadow: none;">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4 border-light opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2026 Delta International School. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <a href="#" class="me-3">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+    
+
+    <!-- Dynamic Content Loader -->
+    <script>
+        function formatDateShort(dateString) {
+            if (!dateString) return null;
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return null;
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = date.toLocaleString('default', { month: 'short' });
+            return { day, month };
+        }
+
+        async function loadDynamicContent() {
+            try {
+                // 1. Load Banners
+                const bannersRes = await fetch('/api/banners');
+                const banners = await bannersRes.json();
+                const carouselInner = document.getElementById('heroCarouselInner');
+                if (banners.length > 0) {
+                    let html = '';
+                    banners.forEach((b, idx) => {
+                        html += `
+                        <div class="carousel-item ${idx === 0 ? 'active' : ''} hero-carousel-item">
+                            <div class="hero-carousel-bg" style="background-image: url('${b.imageUrl}');"></div>
+                            <img src="${b.imageUrl}" class="hero-carousel-img" alt="${b.title}">
+                        </div>`;
+                    });
+                    carouselInner.innerHTML = html;
+                } else {
+                    carouselInner.innerHTML = '<div class="carousel-item active hero-carousel-item"><div class="hero-carousel-bg" style="background-image: url(\'../assets/images/banner.png\');"></div><img src="../assets/images/banner.png" class="hero-carousel-img" alt="Default Banner"></div>';
+                }
+
+                // 2. Load Site Content (Public endpoint fallback)
+                ['about_us', 'principal_message'].forEach(async (key) => {
+                    const cRes = await fetch('/api/content/' + key);
+                    if (cRes.ok) {
+                        const c = await cRes.json();
+                        if (key === 'about_us') {
+                            document.getElementById('aboutTitleText').innerText = c.title || 'About Us';
+                            document.getElementById('aboutBodyText').innerText = c.text || '';
+                            if(c.imageUrl) document.getElementById('aboutImageTag').src = c.imageUrl;
+                            try {
+                                const ed = typeof c.extraData === 'string' ? JSON.parse(c.extraData) : (c.extraData || {});
+                                if(ed.yearsNum) document.getElementById('aboutYearsNumText').innerText = ed.yearsNum;
+                                if(ed.yearsText) document.getElementById('aboutYearsTextContent').innerText = ed.yearsText;
+                                if(ed.feature1) document.getElementById('aboutFeature1Text').innerText = ed.feature1;
+                                if(ed.feature2) document.getElementById('aboutFeature2Text').innerText = ed.feature2;
+                                if(ed.feature3) document.getElementById('aboutFeature3Text').innerText = ed.feature3;
+                            } catch(e) { console.error('Error parsing about_us extraData:', e); }
+                        } else {
+                            document.getElementById('principalName').innerText = c.title || '';
+                            document.getElementById('principalRole').innerText = c.subtitle || '';
+                            document.getElementById('principalQuote').innerText = '"' + c.text + '"';
+                            if (c.imageUrl) {
+                                document.getElementById('principalImageTag').src = c.imageUrl;
+                                document.getElementById('principalImageTag').style.display = 'block';
+                            }
+                        }
+                    } else if (key === 'about_us') {
+                        document.getElementById('aboutTitleText').innerText = 'Discover the Delta Difference';
+                        document.getElementById('aboutBodyText').innerText = 'We provide a nurturing environment where students are encouraged to explore their potential, embrace creativity, and achieve academic excellence.';
+                    } else if (key === 'principal_message') {
+                        document.getElementById('principalName').innerText = 'Dr. Sarah Jenkins';
+                        document.getElementById('principalRole').innerText = 'Principal, Delta International School';
+                        document.getElementById('principalQuote').innerText = '"At Delta International School, we believe that education is not just about imparting knowledge, but about igniting a spark of curiosity."';
+                        document.getElementById('principalImageTag').src = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+                        document.getElementById('principalImageTag').style.display = 'block';
+                    }
+                });
+
+                // 3. Load Events
+                const eventsRes = await fetch('/api/events');
+                const events = await eventsRes.json();
+                const eventsContainer = document.getElementById('eventsContainer');
+                if (events.length > 0) {
+                    let html = '';
+                    events.forEach((e, i) => {
+                        const d = formatDateShort(e.eventDate || e.date);
+                        const colors = ['var(--primary-color)', 'var(--blue-accent)', 'var(--secondary-color)'];
+                        
+                        let dateHtml = '';
+                        if (d) {
+                            dateHtml = `
+                                <div class="event-date" style="background: ${colors[i%3]};">
+                                    <span class="d-block fs-4 fw-bold mb-n1">${d.day}</span>
+                                    <small class="text-uppercase fw-bold">${d.month}</small>
+                                </div>
+                            `;
+                        }
+                        
+                        html += `
+                        <div class="swiper-slide h-auto">
+                            <a href="event-details.html?id=${e.id || e._id}" class="text-decoration-none text-dark d-block h-100 p-2">
+                                <div class="event-card position-relative clickable-card h-100 bg-white" style="transition: transform 0.4s ease, box-shadow 0.4s ease; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                                    ${dateHtml}
+                                    <img src="${e.imageUrl || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&w=600&q=80'}" class="event-img w-100" style="height: 250px; object-fit: cover; display: block; transition: transform 0.4s ease;">
+                                    <div class="p-4 d-flex flex-column" style="height: calc(100% - 250px);">
+                                        <h4 class="h5 fw-bold mb-3">${e.title}</h4>
+                                        <p class="text-muted mb-4 flex-grow-1">${e.description ? e.description.substring(0, 80) : ''}...</p>
+                                        <span class="text-primary fw-bold mt-auto"><i class="fa-solid fa-arrow-right"></i> Read More</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>`;
+                    });
+                    eventsContainer.innerHTML = html;
+                } else {
+                    eventsContainer.innerHTML = '<div class="col-12 text-center text-muted">No upcoming events.</div>';
+                }
+
+                // 4. Load Gallery
+                const galRes = await fetch('/api/gallery');
+                const gallery = await galRes.json();
+                const galContainer = document.getElementById('galleryContainer');
+                if (gallery.length > 0) {
+                    let html = '';
+                    window.homeGalleryData = gallery; // Store for lightbox
+                    gallery.forEach((g, i) => {
+                        html += `
+                        <div class="swiper-slide h-auto">
+                            <div class="gallery-item p-2 h-100" onclick="openHomeLightbox(${i})" style="cursor: pointer; transition: transform 0.4s ease;">
+                                <div class="position-relative h-100 overflow-hidden shadow-sm" style="border-radius: 15px;">
+                                    <img src="${g.imageUrl}" alt="${g.category}" class="w-100 h-100 gallery-item-img" style="object-fit: cover; min-height: 250px; transition: transform 0.4s ease;">
+                                    <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white" style="background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s ease;">
+                                        <i class="fa-solid fa-expand fs-3 mb-2"></i>
+                                        <h5 class="fw-bold m-0">${g.category || 'Gallery'}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    });
+                    galContainer.innerHTML = html;
+                } else {
+                    galContainer.innerHTML = '<div class="col-12 text-center text-muted">No photos available.</div>';
+                }
+
+                // 5. Removed Dynamic Testimonials
+
+            } catch (err) {
+                console.error('Error loading dynamic content', err);
+            } finally {
+                // Ensure proper scrolling if URL has a hash (e.g., #events)
+                // This fixes the issue where dynamic content loads and pushes the anchor down
+                if (window.location.hash) {
+                    setTimeout(() => {
+                        const target = document.querySelector(window.location.hash);
+                        if (target) {
+                            const headerOffset = 100; // Account for the sticky global header
+                            const elementPosition = target.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            window.scrollTo({
+                                 top: offsetPosition,
+                                 behavior: "smooth"
+                            });
+                        }
+                    }, 300); // Small delay to allow DOM to repaint
+                }
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadDynamicContent);
+
+        // Home Lightbox Logic
+        let currentLightboxIndex = 0;
+        
+        function openHomeLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightbox();
+            const lb = new bootstrap.Modal(document.getElementById('homeGalleryLightbox'));
+            lb.show();
+        }
+        
+        function updateLightbox() {
+            if (!window.homeGalleryData || window.homeGalleryData.length === 0) return;
+            const data = window.homeGalleryData[currentLightboxIndex];
+            const img = document.getElementById('lightboxImg');
+            img.style.transform = 'scale(0.95)';
+            setTimeout(() => img.style.transform = 'scale(1)', 50);
+            
+            img.src = data.imageUrl;
+            document.getElementById('lightboxCaption').innerText = data.category || 'Gallery';
+            document.getElementById('lightboxCounter').innerText = `${currentLightboxIndex + 1} / ${window.homeGalleryData.length}`;
+        }
+        
+        document.getElementById('lightboxPrev')?.addEventListener('click', () => {
+            currentLightboxIndex = (currentLightboxIndex > 0) ? currentLightboxIndex - 1 : window.homeGalleryData.length - 1;
+            updateLightbox();
+        });
+        
+        document.getElementById('lightboxNext')?.addEventListener('click', () => {
+            currentLightboxIndex = (currentLightboxIndex < window.homeGalleryData.length - 1) ? currentLightboxIndex + 1 : 0;
+            updateLightbox();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('homeGalleryLightbox').classList.contains('show')) {
+                if (e.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
+                if (e.key === 'ArrowRight') document.getElementById('lightboxNext').click();
+            }
+        });
+
+    </script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swipers after dynamic content is fully loaded
+        window.addEventListener('load', () => {
+            // Add a slight delay to ensure DOM nodes are ready from async fetch
+            setTimeout(() => {
+                new Swiper('.events-swiper', {
+                    slidesPerView: 1.2,
+                    spaceBetween: 20,
+                    loop: true,
+                    keyboard: { enabled: true },
+                    autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+                    pagination: { el: '.events-pagination', clickable: true },
+                    navigation: { nextEl: '.events-button-next', prevEl: '.events-button-prev' },
+                    breakpoints: {
+                        576: { slidesPerView: 1.5 },
+                        768: { slidesPerView: 2 },
+                        992: { slidesPerView: 3 },
+                        1400: { slidesPerView: 4 }
+                    }
+                });
+
+                new Swiper('.gallery-swiper', {
+                    slidesPerView: 1.2,
+                    spaceBetween: 20,
+                    loop: true,
+                    keyboard: { enabled: true },
+                    autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+                    pagination: { el: '.gallery-pagination', clickable: true },
+                    navigation: { nextEl: '.gallery-button-next', prevEl: '.gallery-button-prev' },
+                    breakpoints: {
+                        576: { slidesPerView: 1.5 },
+                        768: { slidesPerView: 2 },
+                        992: { slidesPerView: 3 },
+                        1400: { slidesPerView: 4 }
+                    }
+                });
+
+                new Swiper('.why-choose-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 40,
+                    loop: true,
+                    keyboard: { enabled: true },
+                    autoplay: { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
+                    pagination: { el: '.why-choose-pagination', clickable: true },
+                    navigation: { nextEl: '.why-choose-button-next', prevEl: '.why-choose-button-prev' }
+                });
+            }, 500);
+        });
+    </script>
+    <!-- 3D & Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    
+    <!-- Custom 3D Animations Logic -->
+    <script src="../assets/js/3d-animations.js" defer></script>
+    <script src="../assets/js/global-header.js" defer></script>
+</body>
+</html>
