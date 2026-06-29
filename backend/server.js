@@ -44,9 +44,25 @@ const { connectDB, sequelize } = require('./config/db');
 connectDB().then(() => {
     // Sync models with database
     // Use { alter: true } to update tables if models change. Use { force: true } to drop and recreate.
-    sequelize.sync({ alter: true })
-        .then(() => console.log('Database synced successfully.'))
-        .catch(err => console.error('Error syncing database:', err));
+    sequelize.sync().then(() => {
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+            
+            // --- AIVEN DATABASE KEEP-ALIVE HEARTBEAT ---
+            // Aiven free databases pause if inactive. This sends a dummy query every 5 minutes 
+            // to permanently prevent the database from sleeping and causing a Server Error.
+            setInterval(async () => {
+                try {
+                    await sequelize.query('SELECT 1');
+                    console.log('Database keep-alive ping sent.');
+                } catch (err) {
+                    console.error('Database keep-alive ping failed:', err);
+                }
+            }, 5 * 60 * 1000); // 5 minutes
+        });
+    }).catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
 });
 
 // Import Routes
@@ -89,7 +105,4 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/views/index.html'));
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`);
-});
+
