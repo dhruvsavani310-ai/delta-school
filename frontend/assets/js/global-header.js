@@ -15,7 +15,10 @@ class GlobalHeader extends HTMLElement {
                 <div class="container">
                     <a class="navbar-brand d-flex align-items-center" href="index.html">
                         <img src="../assets/images/logo.png" alt="Delta School Logo" height="50" class="me-2" style="border-radius: 5px;">
-                        <span class="fs-4 fw-bold" style="color: var(--primary-color);">Delta School</span>
+                        <div class="d-flex flex-column justify-content-center" style="line-height: 1.2;">
+                            <span class="fs-5 fw-bold mb-0" style="color: var(--primary-color);">Delta International</span>
+                            <span class="fs-6 fw-bold mb-0" style="color: var(--primary-color);">School</span>
+                        </div>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                         <span class="navbar-toggler-icon"></span>
