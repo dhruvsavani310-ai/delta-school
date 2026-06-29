@@ -448,8 +448,9 @@ body.has-announcement .navbar.fixed-top {
 
 .hero-carousel-img {
     width: 80%;
-    height: 80%;
-    object-fit: cover; /* Cover guarantees a solid rectangular card */
+    height: auto;
+    max-height: 80%;
+    object-fit: contain; /* Prevents any cropping */
     object-position: center;
     position: absolute;
     top: 50%;
@@ -469,12 +470,13 @@ body.has-announcement .navbar.fixed-top {
 
 @media (max-width: 768px) {
     .hero-carousel-item {
-        aspect-ratio: 4/3; 
+        aspect-ratio: 16/9; /* Wider aspect ratio on mobile to better fit banners */
     }
     
     .hero-carousel-img {
         width: 90%;
-        height: 85%;
+        height: auto;
+        max-height: 90%;
         border-radius: 12px;
     }
     
