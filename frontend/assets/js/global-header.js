@@ -38,7 +38,18 @@ class GlobalHeader extends HTMLElement {
                             </li>
                             <li class="nav-item"><a class="nav-link" href="index.html#events">Events</a></li>
                             <li class="nav-item"><a class="nav-link" href="index.html#gallery">Gallery</a></li>
-                            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <li class="nav-item ms-lg-4 d-none d-lg-block position-relative" title="Always Learning!">
+                                <!-- Asynchronous lightweight Lordicon (Zero impact on load speed) -->
+                                <script src="https://cdn.lordicon.com/lordicon.js" async defer></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/wxnxiano.json"
+                                    trigger="loop"
+                                    delay="1000"
+                                    colors="primary:#1a237e,secondary:#e53935"
+                                    style="width:50px;height:50px; margin-right: 10px;">
+                                </lord-icon>
+                            </li>
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
                                 <a href="index.html#admission" class="btn btn-secondary-custom btn-sm px-4 py-2"
                                     style="color: white !important;">Apply Now</a>
                             </li>
