@@ -55,3 +55,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// --- GLOBAL ADMIN FORM LOADING STATE ---
+// Automatically adds a loading spinner to any form's submit button to prevent double-clicks
+// and give users visual feedback during Cloudinary uploads or database saves.
+document.addEventListener('submit', (e) => {
+    if (e.target.tagName === 'FORM') {
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            // Prevent double submission
+            if (submitBtn.dataset.loading === 'true') {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return;
+            }
+            // Store original state
+            submitBtn.dataset.originalText = submitBtn.innerHTML;
+            submitBtn.dataset.loading = 'true';
+            
+            // Apply loading state
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Processing...';
+            submitBtn.disabled = true;
+        }
+    }
+});
+
+// Intercept fetch to reset any loading buttons once the network request finishes
+const originalFetch = window.fetch;
+window.fetch = async function(...args) {
+    try {
+        return await originalFetch.apply(this, args);
+    } finally {
+        // Once any fetch completes, restore the submit buttons
+        document.querySelectorAll('button[type="submit"][data-loading="true"]').forEach(btn => {
+            if (document.body.contains(btn)) {
+                btn.innerHTML = btn.dataset.originalText;
+                btn.dataset.loading = 'false';
+                btn.disabled = false;
+            }
+        });
+    }
+};
