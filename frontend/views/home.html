@@ -504,6 +504,7 @@
                         </div>`;
                     });
                     eventsContainer.innerHTML = html;
+                    if (window.initEventsSwiper) window.initEventsSwiper();
                 } else {
                     eventsContainer.innerHTML = '<div class="col-12 text-center text-muted">No upcoming events.</div>';
                 }
@@ -530,6 +531,7 @@
                         </div>`;
                     });
                     galContainer.innerHTML = html;
+                    if (window.initGallerySwiper) window.initGallerySwiper();
                 } else {
                     galContainer.innerHTML = '<div class="col-12 text-center text-muted">No photos available.</div>';
                 }
@@ -604,58 +606,55 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        // Initialize Swipers after dynamic content is fully loaded
+        // Explicitly initialize Swipers after dynamic content injection
+        window.initEventsSwiper = function() {
+            if (window.eventsSwiper) window.eventsSwiper.destroy(true, true);
+            window.eventsSwiper = new Swiper('.events-swiper', {
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+                loop: true,
+                keyboard: { enabled: true },
+                autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+                pagination: { el: '.events-pagination', clickable: true },
+                navigation: { nextEl: '.events-button-next', prevEl: '.events-button-prev' },
+                breakpoints: {
+                    576: { slidesPerView: 1.5 },
+                    768: { slidesPerView: 2 },
+                    992: { slidesPerView: 3 },
+                    1400: { slidesPerView: 4 }
+                }
+            });
+        };
+
+        window.initGallerySwiper = function() {
+            if (window.gallerySwiper) window.gallerySwiper.destroy(true, true);
+            window.gallerySwiper = new Swiper('.gallery-swiper', {
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+                loop: true,
+                keyboard: { enabled: true },
+                autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+                pagination: { el: '.gallery-pagination', clickable: true },
+                navigation: { nextEl: '.gallery-button-next', prevEl: '.gallery-button-prev' },
+                breakpoints: {
+                    576: { slidesPerView: 1.5 },
+                    768: { slidesPerView: 2 },
+                    992: { slidesPerView: 3 },
+                    1400: { slidesPerView: 4 }
+                }
+            });
+        };
+
         window.addEventListener('load', () => {
-            // Add a slight delay to ensure DOM nodes are ready from async fetch
-            setTimeout(() => {
-                new Swiper('.events-swiper', {
-                    slidesPerView: 1.2,
-                    spaceBetween: 20,
-                    loop: true,
-                    observer: true,
-                    observeParents: true,
-                    keyboard: { enabled: true },
-                    autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
-                    pagination: { el: '.events-pagination', clickable: true },
-                    navigation: { nextEl: '.events-button-next', prevEl: '.events-button-prev' },
-                    breakpoints: {
-                        576: { slidesPerView: 1.5 },
-                        768: { slidesPerView: 2 },
-                        992: { slidesPerView: 3 },
-                        1400: { slidesPerView: 4 }
-                    }
-                });
-
-                new Swiper('.gallery-swiper', {
-                    slidesPerView: 1.2,
-                    spaceBetween: 20,
-                    loop: true,
-                    observer: true,
-                    observeParents: true,
-                    keyboard: { enabled: true },
-                    autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
-                    pagination: { el: '.gallery-pagination', clickable: true },
-                    navigation: { nextEl: '.gallery-button-next', prevEl: '.gallery-button-prev' },
-                    breakpoints: {
-                        576: { slidesPerView: 1.5 },
-                        768: { slidesPerView: 2 },
-                        992: { slidesPerView: 3 },
-                        1400: { slidesPerView: 4 }
-                    }
-                });
-
-                new Swiper('.why-choose-swiper', {
-                    slidesPerView: 1,
-                    spaceBetween: 40,
-                    loop: true,
-                    observer: true,
-                    observeParents: true,
-                    keyboard: { enabled: true },
-                    autoplay: { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
-                    pagination: { el: '.why-choose-pagination', clickable: true },
-                    navigation: { nextEl: '.why-choose-button-next', prevEl: '.why-choose-button-prev' }
-                });
-            }, 500);
+            new Swiper('.why-choose-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 40,
+                loop: true,
+                keyboard: { enabled: true },
+                autoplay: { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
+                pagination: { el: '.why-choose-pagination', clickable: true },
+                navigation: { nextEl: '.why-choose-button-next', prevEl: '.why-choose-button-prev' }
+            });
         });
     </script>
     <!-- 3D & Animation Libraries -->
