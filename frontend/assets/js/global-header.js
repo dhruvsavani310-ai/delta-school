@@ -45,8 +45,8 @@ class GlobalHeader extends HTMLElement {
                                     School Community
                                 </a>
                                 <ul class="dropdown-menu border-0 shadow-sm" aria-labelledby="communityDropdown">
-                                    <li><a class="dropdown-item py-2" href="teachers.html">Teachers</a></li>
-                                    <li><a class="dropdown-item py-2" href="top-students.html">Top Students</a></li>
+                                    <li><a class="dropdown-item py-2" href="/teachers">Teachers</a></li>
+                                    <li><a class="dropdown-item py-2" href="/top-students">Top Students</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/home#events">Events</a></li>
