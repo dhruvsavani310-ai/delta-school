@@ -102,7 +102,11 @@ app.use('/api/announcements', announcementsRoute);
 
 // Basic Route for testing
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/views/index.html'));
+    res.redirect('/home');
+});
+
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/views/home.html'));
 });
 
 
