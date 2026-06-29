@@ -182,7 +182,7 @@
                     } else {
                         tbody.innerHTML = '';
                         data.recentEnquiries.forEach(enq => {
-                            const date = new Date(enq.submittedAt).toLocaleDateString();
+                            const date = new Date(enq.createdAt).toLocaleDateString();
                             const badgeClass = enq.status === 'Pending' ? 'bg-warning text-dark' : 
                                               (enq.status === 'Resolved' ? 'bg-success' : 'bg-info');
                             
