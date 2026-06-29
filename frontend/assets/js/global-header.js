@@ -13,7 +13,7 @@ class GlobalHeader extends HTMLElement {
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
                 <div class="container">
-                    <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <a class="navbar-brand d-flex align-items-center" href="/">
                         <img src="../assets/images/logo.png" alt="Delta School Logo" height="50" class="me-2" style="border-radius: 5px;">
                         <div class="d-flex flex-column justify-content-center" style="line-height: 1.2;">
                             <span class="fs-5 fw-bold mb-0" style="color: var(--primary-color);">Delta International</span>
@@ -38,8 +38,8 @@ class GlobalHeader extends HTMLElement {
                     </div>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul class="navbar-nav align-items-center">
-                            <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     School Community
@@ -49,8 +49,8 @@ class GlobalHeader extends HTMLElement {
                                     <li><a class="dropdown-item py-2" href="top-students.html">Top Students</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="index.html#events">Events</a></li>
-                            <li class="nav-item"><a class="nav-link" href="index.html#gallery">Gallery</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/#events">Events</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/#gallery">Gallery</a></li>
                             <li class="nav-item ms-lg-4 d-none d-lg-block position-relative" title="Always Learning!">
                                 <lord-icon
                                     src="https://cdn.lordicon.com/wxnxiano.json"
@@ -61,7 +61,7 @@ class GlobalHeader extends HTMLElement {
                                 </lord-icon>
                             </li>
                             <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-                                <a href="index.html#admission" class="btn btn-secondary-custom btn-sm px-4 py-2"
+                                <a href="/#admission" class="btn btn-secondary-custom btn-sm px-4 py-2"
                                     style="color: white !important;">Apply Now</a>
                             </li>
                         </ul>
