@@ -436,25 +436,29 @@ body.has-announcement .navbar.fixed-top {
 
 .hero-carousel-bg {
     position: absolute;
-    top: -10%;
-    left: -10%;
-    right: -10%;
-    bottom: -10%;
+    top: -20%;
+    left: -20%;
+    right: -20%;
+    bottom: -20%;
     background-size: cover;
     background-position: center;
-    filter: blur(30px);
-    opacity: 0.6;
+    filter: blur(40px) brightness(0.5);
     z-index: 1;
 }
 
 .hero-carousel-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensure the image is never cropped */
+    width: 80%;
+    height: 80%;
+    object-fit: cover; /* Cover guarantees a solid rectangular card */
     object-position: center;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 2;
     display: block;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
 }
 
 @media (max-width: 991px) {
@@ -466,6 +470,12 @@ body.has-announcement .navbar.fixed-top {
 @media (max-width: 768px) {
     .hero-carousel-item {
         aspect-ratio: 4/3; 
+    }
+    
+    .hero-carousel-img {
+        width: 90%;
+        height: 85%;
+        border-radius: 12px;
     }
     
     /* Slightly reduce the size of the prev/next arrows on mobile to prevent blocking too much of the image */
