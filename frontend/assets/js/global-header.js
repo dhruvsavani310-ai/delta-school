@@ -39,8 +39,6 @@ class GlobalHeader extends HTMLElement {
                             <li class="nav-item"><a class="nav-link" href="index.html#events">Events</a></li>
                             <li class="nav-item"><a class="nav-link" href="index.html#gallery">Gallery</a></li>
                             <li class="nav-item ms-lg-4 d-none d-lg-block position-relative" title="Always Learning!">
-                                <!-- Asynchronous lightweight Lordicon (Zero impact on load speed) -->
-                                <script src="https://cdn.lordicon.com/lordicon.js" async defer></script>
                                 <lord-icon
                                     src="https://cdn.lordicon.com/wxnxiano.json"
                                     trigger="loop"
@@ -63,6 +61,13 @@ class GlobalHeader extends HTMLElement {
         this.loadAnnouncements();
         this.initMobileMenuAutoClose(); // Initialize mobile menu auto-close functionality
         
+        // Ensure Lordicon script is loaded
+        if (!document.querySelector('script[src="https://cdn.lordicon.com/lordicon.js"]')) {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.lordicon.com/lordicon.js';
+            document.head.appendChild(script);
+        }
+
         // Ensure Back to Top button is only injected once even if multiple global-headers exist
         if (!document.querySelector('.back-to-top-wrapper')) {
             this.initBackToTop(); 
