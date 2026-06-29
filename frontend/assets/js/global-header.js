@@ -20,9 +20,22 @@ class GlobalHeader extends HTMLElement {
                             <span class="fs-6 fw-bold mb-0" style="color: var(--primary-color);">School</span>
                         </div>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    
+                    <!-- Mobile Right Section (Lordicon + Hamburger) -->
+                    <div class="d-flex align-items-center">
+                        <div class="d-lg-none me-2" title="Always Learning!">
+                            <lord-icon
+                                src="https://cdn.lordicon.com/wxnxiano.json"
+                                trigger="loop"
+                                delay="1000"
+                                colors="primary:#1a237e,secondary:#e53935"
+                                style="width:40px;height:40px;">
+                            </lord-icon>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                         <ul class="navbar-nav align-items-center">
                             <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
